@@ -24,8 +24,8 @@ jobs:
           git add feed.csv
           git diff --staged --quiet || git commit -m "Feed Update"
           git push
-
-- name: Import auslösen
-  run: |
-    curl -fsS -X POST "https://deinelektroheld.de/api/public/feeds/run" \
-      -H "Authorization: Bearer ${{ secrets.FEED_IMPORT_TOKEN }}"
+      - name: Import anstoßen
+        run: |
+          sleep 330
+          curl -fsS -X POST "${{ secrets.IMPORT_URL }}" \
+            -H "Authorization: Bearer ${{ secrets.IMPORT_SECRET }}"
